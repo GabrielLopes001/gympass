@@ -11,7 +11,7 @@ const theme = createTheme({
   size: {
     "14": 56,
     "33": 148
-  }
+  },
 });
 
 type ThemeProps = typeof theme;
