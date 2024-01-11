@@ -3,6 +3,7 @@ import { StatusBar } from 'react-native';
 import { ThemeProvider } from '@shopify/restyle';
 import { theme } from './src/theme';
 import { SignIn } from '@screens/SignIn';
+import { SignUp } from '@screens/SignUp';
 
 export default function App() {
   const [ fontsLoader ] = useFonts({Roboto_400Regular, Roboto_700Bold})
@@ -14,7 +15,7 @@ export default function App() {
         translucent
       />
 
-      {fontsLoader && <SignIn /> }
+      {fontsLoader && <SignUp /> }
     </ThemeProvider>
   );
 }
