@@ -1,6 +1,8 @@
-import { color, useTheme } from "@shopify/restyle";
 import { useState } from "react";
+
 import { TextInput, TextInputProps } from "react-native";
+import { useTheme } from "@shopify/restyle";
+
 import { ThemeProps } from "src/theme";
 
 export function Input({...rest}: TextInputProps){
