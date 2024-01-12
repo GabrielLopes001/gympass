@@ -1,22 +1,32 @@
-import { createBox, createText } from "@shopify/restyle";
+import { useNavigation } from "@react-navigation/native";
 import { Image, ScrollView } from "react-native";
+import { createBox, createText } from "@shopify/restyle";
 
 import { ThemeProps } from "src/theme";
 
-import LogoSvg from "@assets/logo.svg";
 import BackGroundImg from "@assets/background.png";
-import { Input } from "@components/Input";
+import LogoSvg from "@assets/logo.svg";
+
+import { AuthNavigationRoutesProps } from "@routes/auth.routes";
 import { Button } from "@components/Button";
+import { Input } from "@components/Input";
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 export function SignIn(){
+  const navigation = useNavigation<AuthNavigationRoutesProps>();
+
+  function handleNewAccount(){
+    navigation.navigate("signUp")
+  }
+
   return(
     <ScrollView contentContainerStyle={{flexGrow: 1}} showsHorizontalScrollIndicator={false}>
       <Box flex={1} bg="gray_700" paddingHorizontal="xs2">
         <Image
           source={BackGroundImg}
+          defaultSource={BackGroundImg}
           alt="Background img"
           resizeMode="contain"
           style={{position:"absolute"}}
@@ -56,6 +66,7 @@ export function SignIn(){
             <Button
              title="Criar sua Conta"
              variant="secondary"
+             onPress={handleNewAccount}
             />
           </Box>
 

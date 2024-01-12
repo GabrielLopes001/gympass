@@ -1,12 +1,12 @@
 import { SpacingProps, VariantProps, createRestyleComponent, createText, createVariant, spacing, useTheme } from "@shopify/restyle";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { ThemeProps } from "src/theme";
 
 type BoxCustomProps = 
  SpacingProps<ThemeProps> &
  VariantProps<ThemeProps, 'buttonVariants'>;
  
- type Props =  BoxCustomProps & {
+ type Props =  BoxCustomProps & TouchableOpacityProps & {
    title: string;
  }
 
@@ -19,7 +19,7 @@ const Text = createText<ThemeProps>();
 
 export function Button(props: Props){
   return(
-    <TouchableOpacity style={{width: '100%'}}>
+    <TouchableOpacity style={{width: '100%'}} {...props}>
       <Box {...props}>
         <Text variant={props.variant === "primary" ? 'button_primary' : 'button_secondary'}>
         {props.title}

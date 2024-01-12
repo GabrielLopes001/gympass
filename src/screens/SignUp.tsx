@@ -1,10 +1,12 @@
-import { createBox, createText } from "@shopify/restyle";
+import { useNavigation } from "@react-navigation/native";
 import { Image, ScrollView } from "react-native";
+import { createBox, createText } from "@shopify/restyle";
 
 import { ThemeProps } from "src/theme";
 
-import LogoSvg from "@assets/logo.svg";
 import BackGroundImg from "@assets/background.png";
+import LogoSvg from "@assets/logo.svg";
+
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 
@@ -12,11 +14,18 @@ const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 export function SignUp(){
+  const navigation = useNavigation();
+
+  function handleGoBack(){
+    navigation.goBack();
+  }
+
   return(
     <ScrollView contentContainerStyle={{flexGrow: 1}} showsHorizontalScrollIndicator={false}>
       <Box flex={1} bg="gray_700" paddingHorizontal="xs2">
         <Image
           source={BackGroundImg}
+          defaultSource={BackGroundImg}
           alt="Background img"
           resizeMode="contain"
           style={{position:"absolute"}}
@@ -53,9 +62,10 @@ export function SignUp(){
           />
 
           <Button
-            title="Criar sua Conta"
+            title="Voltar para o login"
             variant="secondary"
             marginTop="xxl"
+            onPress={handleGoBack}
           />
 
         </Box>
