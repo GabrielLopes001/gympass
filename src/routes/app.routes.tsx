@@ -1,11 +1,12 @@
 import { createBottomTabNavigator, BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 
+import { useTheme } from "@shopify/restyle";
+import { ThemeProps } from "src/theme";
+
 import { Exercise } from "@screens/Exercise";
 import { Profile } from "@screens/Profile";
 import { History } from "@screens/History";
 import { Home } from "@screens/Home";
-import { useTheme } from "@shopify/restyle";
-import { ThemeProps } from "src/theme";
 
 import HistorySvg from "@assets/history.svg";
 import ProfileSvg from "@assets/profile.svg"
