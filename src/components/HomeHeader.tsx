@@ -22,7 +22,7 @@ export function HomeHeader() {
       <UserPhoto
         source={{ uri: "https://github.com/GabrielLopes001.png" }}
         alt="User Profile"
-        size={64}
+        size={58}
         style={{ marginRight: 16 }}
       />
       <Box flex={1}>
