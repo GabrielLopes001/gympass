@@ -44,21 +44,21 @@ export function SignUp(){
           </Text>
 
           <Input 
-          placeholder="Nome"
+            placeholder="Nome"
           />
           <Input 
-          placeholder="E-mail"
-          keyboardType="email-address"
-          autoCapitalize="none"
+            placeholder="E-mail"
+            keyboardType="email-address"
+            autoCapitalize="none"
           />
           <Input 
-          placeholder="Senha"
-          secureTextEntry
+            placeholder="Senha"
+            secureTextEntry
           />
 
           <Button
-          title="Acessar"
-          variant="primary"
+            title="Acessar"
+            variant="primary"
           />
 
           <Button
