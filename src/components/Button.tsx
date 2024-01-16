@@ -1,4 +1,4 @@
-import { SpacingProps, VariantProps, createRestyleComponent, createText, createVariant, spacing, useTheme } from "@shopify/restyle";
+import { SpacingProps, VariantProps, createRestyleComponent, createText, createVariant, spacing } from "@shopify/restyle";
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { ThemeProps } from "src/theme";
 

@@ -1,7 +1,9 @@
+import { useState } from "react";
+
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { createText, useTheme } from "@shopify/restyle"
+
 import { ThemeProps } from "src/theme"
-import { useState } from "react";
 
 const Text = createText<ThemeProps>();
 

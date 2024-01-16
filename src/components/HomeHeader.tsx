@@ -1,6 +1,6 @@
-import { MaterialIcons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native";
 import { createBox, createText, useTheme } from "@shopify/restyle";
+import { TouchableOpacity } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import { ThemeProps } from "src/theme";
 import { UserPhoto } from "./UserPhoto";

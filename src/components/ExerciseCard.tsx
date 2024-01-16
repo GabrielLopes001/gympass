@@ -1,6 +1,7 @@
-import { createBox, createText, useTheme } from "@shopify/restyle";
 import { Image, TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { createBox, createText, useTheme } from "@shopify/restyle";
 import { Entypo } from "@expo/vector-icons"
+
 import { ThemeProps } from "src/theme";
 
 type Props = TouchableOpacityProps & {}

@@ -1,5 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
 import { Image, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { createBox, createText } from "@shopify/restyle";
 
 import { ThemeProps } from "src/theme";

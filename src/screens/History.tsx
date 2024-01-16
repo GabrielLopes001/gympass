@@ -1,9 +1,10 @@
-import { HistoryCard } from "@components/HistoryCard";
-import { ScreenHeader } from "@components/ScreenHeader";
-import { createBox, createText } from "@shopify/restyle";
 import { useState } from "react";
+import { createBox, createText } from "@shopify/restyle";
 import { SectionList } from "react-native";
 import { ThemeProps } from "src/theme";
+
+import { HistoryCard } from "@components/HistoryCard";
+import { ScreenHeader } from "@components/ScreenHeader";
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { TextInput, TextInputProps } from "react-native";
 import { SpacingProps, VariantProps, createRestyleComponent, createVariant, spacing, useTheme } from "@shopify/restyle";
 
+
 import { ThemeProps } from "src/theme";
 
 type BoxCustomProps = SpacingProps<ThemeProps> & VariantProps<ThemeProps, 'inputVariants'>;

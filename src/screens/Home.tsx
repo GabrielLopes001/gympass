@@ -1,10 +1,12 @@
-import { ExerciseCard } from "@components/ExerciseCard";
-import { Group } from "@components/Group";
-import { HomeHeader } from "@components/HomeHeader";
-import { createBox, createText } from "@shopify/restyle"
 import { useState } from "react";
 import { FlatList } from "react-native";
+
+import { createBox, createText } from "@shopify/restyle"
 import { ThemeProps } from "src/theme"
+
+import { Group } from "@components/Group";
+import { HomeHeader } from "@components/HomeHeader";
+import { ExerciseCard } from "@components/ExerciseCard";
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
