@@ -27,7 +27,7 @@ export function ExerciseCard({...rest}: Props){
                <Text variant="heading" marginTop="s0">
                   Remada Curvada
                </Text>
-               <Text variant="body">
+               <Text variant="body" numberOfLines={3}>
                   3x séries de 12x repetições
                </Text>
             </Box>
