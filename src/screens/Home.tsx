@@ -35,7 +35,7 @@ export function Home(){
 
       <Box px="3">
         <Box flexDirection="row" justifyContent="space-between" mb="3">
-          <Text variant="heading" color="gray_200">
+          <Text variant="body" color="gray_200" fontSize={16} fontWeight="bold">
             Exercícios
           </Text>
           <Text variant="body" color="gray_200">

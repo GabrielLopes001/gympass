@@ -14,7 +14,7 @@ export function Input({...rest}: TextInputProps){
       style={{
         backgroundColor:theme.colors.gray_700, 
         width: '100%',
-        height: theme.size[14], 
+        height: theme.spacing[14], 
         paddingHorizontal: 16,
         fontSize: theme.spacing[4],
         color: theme.colors.white,

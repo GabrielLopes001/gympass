@@ -26,8 +26,8 @@ export function HomeHeader() {
         style={{ marginRight: 16 }}
       />
       <Box flex={1}>
-        <Text variant="body">Olá,</Text>
-        <Text variant="heading">Gabriel</Text>
+        <Text variant="body" fontSize={16}>Olá,</Text>
+        <Text variant="body" fontSize={16} fontFamily="bold">Gabriel</Text>
       </Box>
 
       <TouchableOpacity>

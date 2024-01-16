@@ -9,11 +9,7 @@ const theme = createTheme({
   colors,
   spacing,
   textVariants,
-  buttonVariants,
-  size: {
-    "14": 56,
-    "33": 148
-  },
+  buttonVariants
 });
 
 type ThemeProps = typeof theme;

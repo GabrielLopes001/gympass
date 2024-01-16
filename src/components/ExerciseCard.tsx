@@ -24,10 +24,10 @@ export function ExerciseCard({...rest}: Props){
             />
 
             <Box flex={1} ml="4">
-               <Text variant="heading" marginTop="1">
+               <Text variant="heading" fontSize={18} marginTop="1">
                   Remada Curvada
                </Text>
-               <Text variant="body" numberOfLines={3}>
+               <Text variant="body" numberOfLines={1}>
                   3x séries de 12x repetições
                </Text>
             </Box>

@@ -34,7 +34,7 @@ export function SignIn(){
 
         <Box marginVertical="24" justifyContent="center" alignItems="center">
           <LogoSvg />
-          <Text variant="body">
+          <Text variant="body" fontSize={14}>
             Treine sua mente e seu corpo
           </Text>
         </Box>

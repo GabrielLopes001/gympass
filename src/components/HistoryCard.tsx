@@ -12,7 +12,7 @@ export function HistoryCard(){
             <Text variant="heading" fontSize={16} textTransform="capitalize">
                Costas
             </Text>
-            <Text variant="body" numberOfLines={1} fontSize={18}>
+            <Text variant="body" fontSize={18} numberOfLines={1}>
                Puxa Frontal
             </Text>
          </Box>

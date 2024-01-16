@@ -7,16 +7,17 @@ export const textVariants = {
   },
   body: {
     fontFamily: 'Roboto_400Regular',
-    color: 'gray_100'
+    color: 'gray_100',
+    fontSize: 14
   },
   button_primary: {
     color: 'white',
     fontFamily: 'Roboto_700Bold',
-    fontSize: 14
+    fontSize: 16
   },
   button_secondary: {
     color: 'green_500',
     fontFamily: 'Roboto_700Bold',
-    fontSize: 14
+    fontSize: 16
   }
 }
