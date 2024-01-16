@@ -7,8 +7,8 @@ const Text = createText<ThemeProps>();
 
 export function HistoryCard(){
    return(
-      <Box width="100%" flexDirection="row" px="md" py="md" mb="xs" borderRadius={5} bg="gray_500" alignItems="center" justifyContent="space-between">
-         <Box mr="xs">
+      <Box width="100%" flexDirection="row" px="4" py="4" mb="3" borderRadius={5} bg="gray_500" alignItems="center" justifyContent="space-between">
+         <Box mr="3">
             <Text variant="heading" fontSize={16} textTransform="capitalize">
                Costas
             </Text>

@@ -10,7 +10,7 @@ const Text = createText<ThemeProps>();
 
 export function ScreenHeader({title}: Props) {
    return (
-      <Box bg="gray_600" justifyContent="center" alignItems="center" pb="xl2" pt="md1">
+      <Box bg="gray_600" justifyContent="center" alignItems="center" pb="7" pt="16">
          <Text variant="heading">
             {title}
          </Text>

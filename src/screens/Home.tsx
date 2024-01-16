@@ -33,8 +33,8 @@ export function Home(){
         style={{ paddingHorizontal: 10, maxHeight: 40, marginVertical: 32}}
       />
 
-      <Box px="xs">
-        <Box flexDirection="row" justifyContent="space-between" mb="xs">
+      <Box px="3">
+        <Box flexDirection="row" justifyContent="space-between" mb="3">
           <Text variant="heading" color="gray_200">
             Exercícios
           </Text>

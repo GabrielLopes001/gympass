@@ -16,7 +16,7 @@ export function Input({...rest}: TextInputProps){
         width: '100%',
         height: theme.size[14], 
         paddingHorizontal: 16,
-        fontSize: theme.spacing.md,
+        fontSize: theme.spacing[4],
         color: theme.colors.white,
         fontFamily: 'Roboto_400Regular',
         marginBottom: 16,
