@@ -13,18 +13,18 @@ export function ExerciseCard({...rest}: Props){
    return(
          <TouchableOpacity {...rest}>
 
-            <Box flexDirection="row" bg="gray_500" alignItems="center" p="s" pr="md" borderRadius={6} mb="xs">
+            <Box flexDirection="row" bg="gray_500" alignItems="center" p="2" pr="4" borderRadius={6} mb="3">
 
             <Image 
                source={{uri: 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/costas-remada-curvada-.gif'}}
                width={64}
                height={64}
                borderRadius={12}
-               resizeMode="center"
+               resizeMode="cover"
             />
 
-            <Box flex={1} ml="md">
-               <Text variant="heading" marginTop="s0">
+            <Box flex={1} ml="4">
+               <Text variant="heading" marginTop="1">
                   Remada Curvada
                </Text>
                <Text variant="body" numberOfLines={3}>

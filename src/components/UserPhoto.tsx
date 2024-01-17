@@ -9,7 +9,7 @@ export function UserPhoto({ size, ...rest }: Props) {
         <Image 
          width={size} 
          height={size} 
-         borderRadius={30} 
+         borderRadius={100} 
          {...rest}
          />
       ) 

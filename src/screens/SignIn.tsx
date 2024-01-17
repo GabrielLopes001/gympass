@@ -23,7 +23,7 @@ export function SignIn(){
 
   return(
     <ScrollView contentContainerStyle={{flexGrow: 1}} showsHorizontalScrollIndicator={false}>
-      <Box flex={1} bg="gray_700" paddingHorizontal="xs2">
+      <Box flex={1} bg="gray_700" paddingHorizontal="10">
         <Image
           source={BackGroundImg}
           defaultSource={BackGroundImg}
@@ -32,7 +32,7 @@ export function SignIn(){
           style={{position:"absolute"}}
         />
 
-        <Box marginVertical="xxl" justifyContent="center" alignItems="center">
+        <Box marginVertical="24" justifyContent="center" alignItems="center">
           <LogoSvg />
           <Text variant="body">
             Treine sua mente e seu corpo
@@ -40,7 +40,7 @@ export function SignIn(){
         </Box>
 
         <Box justifyContent="center" alignItems="center">
-          <Text variant="heading" marginBottom="xs">
+          <Text variant="heading" marginBottom="3">
             Acesse sua conta
           </Text>
 
@@ -59,7 +59,7 @@ export function SignIn(){
           variant="primary"
           />
 
-          <Box justifyContent="center" alignItems="center" width={'100%'} marginTop="xxl">
+          <Box justifyContent="center" alignItems="center" width={'100%'} marginTop="24">
             <Text variant="body">
               Ainda não tem acesso ?
             </Text>

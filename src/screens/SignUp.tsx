@@ -22,7 +22,7 @@ export function SignUp(){
 
   return(
     <ScrollView contentContainerStyle={{flexGrow: 1}} showsHorizontalScrollIndicator={false}>
-      <Box flex={1} bg="gray_700" paddingHorizontal="xs2">
+      <Box flex={1} bg="gray_700" paddingHorizontal="10">
         <Image
           source={BackGroundImg}
           defaultSource={BackGroundImg}
@@ -31,7 +31,7 @@ export function SignUp(){
           style={{position:"absolute"}}
         />
 
-        <Box marginVertical="xxl" justifyContent="center" alignItems="center">
+        <Box marginVertical="24" justifyContent="center" alignItems="center">
           <LogoSvg />
           <Text variant="body">
             Treine sua mente e seu corpo
@@ -39,32 +39,32 @@ export function SignUp(){
         </Box>
 
         <Box justifyContent="center" alignItems="center">
-          <Text variant="heading" marginBottom="xs">
+          <Text variant="heading" marginBottom="3">
             Crie sua conta
           </Text>
 
           <Input 
-          placeholder="Nome"
+            placeholder="Nome"
           />
           <Input 
-          placeholder="E-mail"
-          keyboardType="email-address"
-          autoCapitalize="none"
+            placeholder="E-mail"
+            keyboardType="email-address"
+            autoCapitalize="none"
           />
           <Input 
-          placeholder="Senha"
-          secureTextEntry
+            placeholder="Senha"
+            secureTextEntry
           />
 
           <Button
-          title="Acessar"
-          variant="primary"
+            title="Acessar"
+            variant="primary"
           />
 
           <Button
             title="Voltar para o login"
             variant="secondary"
-            marginTop="xxl"
+            marginTop="24"
             onPress={handleGoBack}
           />
 

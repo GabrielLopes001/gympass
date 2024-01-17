@@ -14,9 +14,9 @@ export function HomeHeader() {
     <Box
       flexDirection="row"
       bg="gray_600"
-      pt="md1"
-      pb="xl"
-      px="sm1"
+      pt="16"
+      pb="5"
+      px="8"
       alignItems="center"
     >
       <UserPhoto

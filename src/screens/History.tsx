@@ -31,7 +31,7 @@ export function History(){
           <HistoryCard />
         )}
         renderSectionHeader={({section}) => (
-          <Text variant="body" mt="xs2" mb="md">
+          <Text variant="body" mt="10" mb="4">
             {section.title}
           </Text>
         )}

@@ -25,7 +25,7 @@ const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>();
 
 export function AppRoutes(){
   const { spacing, colors } = useTheme<ThemeProps>();
-  const iconSize = spacing.xl2
+  const iconSize = spacing[7]
 
   return(
     <Navigator screenOptions={{
@@ -36,8 +36,8 @@ export function AppRoutes(){
       tabBarStyle: {
         backgroundColor: colors.gray_600,
         borderTopWidth: 0,
-        paddingTop: spacing.md,
-        paddingBottom: spacing.xs2
+        paddingTop: spacing[4],
+        paddingBottom: spacing[10]
       }
     }}>
       <Screen 

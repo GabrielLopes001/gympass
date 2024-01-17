@@ -2,7 +2,6 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createBox, useTheme } from "@shopify/restyle";
 import { ThemeProps } from "src/theme";
 
-import { AuthRoutes } from "./auth.routes";
 import { AppRoutes } from "./app.routes";
 
 const Box = createBox<ThemeProps>();

@@ -5,26 +5,32 @@ import { useTheme } from "@shopify/restyle";
 
 import { ThemeProps } from "src/theme";
 
-export function Input({...rest}: TextInputProps){
-  const theme = useTheme<ThemeProps>();
+type variantInputStyleProps ='PRIMARY' | 'SECONDARY';
+
+type Props = TextInputProps & {
+  variant?: variantInputStyleProps;
+}
+
+export function Input({variant = 'PRIMARY', ...rest}: Props){
+  const { colors, spacing } = useTheme<ThemeProps>();
   const [focus, setFocus] = useState(false);
 
   return(
     <TextInput
       style={{
-        backgroundColor:theme.colors.gray_700, 
+        backgroundColor: variant === 'PRIMARY' ? colors.gray_700 : colors.gray_600, 
         width: '100%',
-        height: theme.size[14], 
+        height: spacing[14], 
         paddingHorizontal: 16,
-        fontSize: theme.spacing.md,
-        color: theme.colors.white,
+        fontSize: spacing[4],
+        color: colors.white,
         fontFamily: 'Roboto_400Regular',
         marginBottom: 16,
         borderRadius: 5,
         borderWidth: focus ? 1 : 0,
-        borderColor: focus ? theme.colors.green_500 : 'transparent'
+        borderColor: focus ? colors.green_500 : 'transparent'
       }}
-      placeholderTextColor={theme.colors.gray_300}
+      placeholderTextColor={colors.gray_300}
       onFocus={() => setFocus(true)}
       onBlur={() => setFocus(false)}
       {...rest}
