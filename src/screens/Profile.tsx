@@ -1,9 +1,12 @@
 import { useState } from "react";
+import Toast, { ErrorToast } from "react-native-toast-message";
 import ContentLoader, { Circle } from "react-content-loader/native";
-import { KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from "react-native";
+import { Alert, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from "react-native";
 
 import { ThemeProps } from "src/theme";
 import { createBox, createText, useTheme } from "@shopify/restyle";
+
+import * as ImagePicker from "expo-image-picker"
 
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
@@ -16,7 +19,36 @@ const Text = createText<ThemeProps>();
 
 export function Profile(){
   const [isProfileLoading, setIsProfileLoading] = useState(false);
+  const [userPhoto, setUserPhoto] = useState('https://icon-library.com/images/default-profile-icon/default-profile-icon-6.jpg');
   const { colors } = useTheme<ThemeProps>();
+
+  async function handleUserPhotoSelect() {
+    setIsProfileLoading(true)
+    try {
+      const photoSelected = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+        aspect: [4,4],
+        allowsEditing: true
+      });
+  
+      if(photoSelected.canceled){
+        return
+      }
+
+      if(photoSelected.assets[0].uri){
+        if(photoSelected.assets[0].fileSize && (photoSelected.assets[0].fileSize / 1024 / 1024 > 1)){
+          return Alert.alert('ERRO')
+        }
+        setUserPhoto(photoSelected.assets[0].uri)
+      }
+  
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsProfileLoading(false)
+    }
+  }
 
   return(
     <Box flex={1}>
@@ -26,11 +58,6 @@ export function Profile(){
                 <Box justifyContent="center" alignItems="center" mt="7" px="10">
                   {
                     isProfileLoading ?
-                    <UserPhoto
-                      source={{ uri: "https://github.com/GabrielLopes001.png" }}
-                      alt="User Profile"
-                      size={128}
-                    /> :
                     <ContentLoader
                       width={450} 
                       height={128} 
@@ -39,10 +66,16 @@ export function Profile(){
                       foregroundColor={colors.gray_400}
                     >
                       <Circle cx={225} cy={64} r={64}/>
-                    </ContentLoader>
+                    </ContentLoader> :
+
+                    <UserPhoto
+                      source={{ uri: userPhoto }}
+                      alt="User Profile"
+                      size={128}
+                    />
                   }
 
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={handleUserPhotoSelect}>
                     <Text color="green_500" fontWeight="bold" fontSize={16} mt="3" mb="8">
                       Alterar foto
                     </Text>
