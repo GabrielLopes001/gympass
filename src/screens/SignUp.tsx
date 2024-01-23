@@ -1,14 +1,17 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { useNavigation } from "@react-navigation/native";
-import { Image, ScrollView } from "react-native";
+import { useForm, Controller } from "react-hook-form";
 import { createBox, createText } from "@shopify/restyle";
+import { Image, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 
 import { ThemeProps } from "src/theme";
 
-import BackGroundImg from "@assets/background.png";
 import LogoSvg from "@assets/logo.svg";
+import BackGroundImg from "@assets/background.png";
 
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
+import { SingUpSchema, singUpSchema } from "@utils/singUpSchema";
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
@@ -16,12 +19,20 @@ const Text = createText<ThemeProps>();
 export function SignUp(){
   const navigation = useNavigation();
 
+  const { control, handleSubmit, reset, formState: {errors} } = useForm<SingUpSchema>({
+    resolver: zodResolver(singUpSchema)
+  });
+
+  function handleSingUp(data: SingUpSchema){
+    console.log(data)
+    reset();
+  }
+
   function handleGoBack(){
     navigation.goBack();
   }
 
   return(
-    <ScrollView contentContainerStyle={{flexGrow: 1}} showsHorizontalScrollIndicator={false}>
       <Box flex={1} bg="gray_700" paddingHorizontal="10">
         <Image
           source={BackGroundImg}
@@ -31,45 +42,94 @@ export function SignUp(){
           style={{position:"absolute"}}
         />
 
-        <Box marginVertical="24" justifyContent="center" alignItems="center">
-          <LogoSvg />
-          <Text variant="body">
-            Treine sua mente e seu corpo
-          </Text>
-        </Box>
+        <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === "ios" ? 'padding' : 'height'}>
+          <ScrollView contentContainerStyle={{flexGrow: 1}} showsVerticalScrollIndicator={false}>
+            <Box marginVertical="20" justifyContent="center" alignItems="center">
+              <LogoSvg />
+              <Text variant="body">
+                Treine sua mente e seu corpo
+              </Text>
+            </Box>
 
-        <Box justifyContent="center" alignItems="center">
-          <Text variant="heading" marginBottom="3">
-            Crie sua conta
-          </Text>
+            <Box justifyContent="center" alignItems="center">
+              <Text variant="heading" mb="3">
+                Crie sua conta
+              </Text>
 
-          <Input 
-            placeholder="Nome"
-          />
-          <Input 
-            placeholder="E-mail"
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-          <Input 
-            placeholder="Senha"
-            secureTextEntry
-          />
+              <Controller
+                control={control}
+                name="name"
+                render={({field: {onChange, value}}) => (
+                  <Input 
+                    placeholder="Nome"
+                    onChangeText={onChange}
+                    value={value}
+                    errorMessage={errors.name?.message}
+                  />
+                )}
+              />
 
-          <Button
-            title="Acessar"
-            variant="primary"
-          />
+              <Controller
+                control={control}
+                name="email"
+                render={({field: {onChange, value}}) => (
+                  <Input 
+                    placeholder="E-mail"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    onChangeText={onChange}
+                    value={value}
+                    errorMessage={errors.email?.message}
+                  />
+                )}
+              />
 
-          <Button
-            title="Voltar para o login"
-            variant="secondary"
-            marginTop="24"
-            onPress={handleGoBack}
-          />
+              <Controller
+                control={control}
+                name="password"
+                render={({field: {onChange, value}}) => (
+                  <Input 
+                    placeholder="Senha"
+                    secureTextEntry
+                    onChangeText={onChange}
+                    value={value}
+                    errorMessage={errors.password?.message}
+                  />
+                )}
+              />
 
-        </Box>
+              <Controller
+                control={control}
+                name="password_confirm"
+                render={({field: {onChange, value}}) => (
+                  <Input 
+                    placeholder="Confirme a Senha"
+                    secureTextEntry
+                    onChangeText={onChange}
+                    value={value}
+                    errorMessage={errors.password_confirm?.message}
+                    onSubmitEditing={handleSubmit(handleSingUp)}
+                    returnKeyType="send"
+                  />
+                )}
+              />
+
+              <Button
+                title="Criar sua conta"
+                variant="primary"
+                onPress={handleSubmit(handleSingUp)}
+              />
+
+              <Button
+                title="Voltar para o login"
+                variant="secondary"
+                marginTop="20"
+                onPress={handleGoBack}
+              />
+
+            </Box>
+          </ScrollView>
+        </KeyboardAvoidingView>
       </Box>
-    </ScrollView>
   );
 }
