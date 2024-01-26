@@ -1,6 +1,6 @@
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { createBox, useTheme } from "@shopify/restyle";
 import { ThemeProps } from "src/theme";
+import { createBox, useTheme } from "@shopify/restyle";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 
 import { AppRoutes } from "./app.routes";
 import { AuthRoutes } from "./auth.routes";
@@ -15,7 +15,7 @@ export function Routes(){
   return(
     <Box flex={1} bg="gray_700">
       <NavigationContainer theme={theme}>
-        <AppRoutes />
+        <AuthRoutes />
       </NavigationContainer>
     </Box>
       
