@@ -11,6 +11,7 @@ import BackGroundImg from "@assets/background.png";
 
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
+import { useAuth } from "@hooks/useAuth";
 import { AuthNavigationRoutesProps } from "@routes/auth.routes";
 import { SingInSchema, singInSchema } from "@utils/singInSchema";
 
@@ -19,6 +20,7 @@ const Text = createText<ThemeProps>();
 
 export function SignIn(){
   const navigation = useNavigation<AuthNavigationRoutesProps>();
+  const { singIn } = useAuth();
 
   const { control, handleSubmit, reset, formState:{errors} } = useForm<SingInSchema>({
     resolver: zodResolver(singInSchema)
@@ -28,8 +30,8 @@ export function SignIn(){
     navigation.navigate("signUp")
   }
 
-  function handleAccessAccount(data: SingInSchema){
-    console.log(data)
+  function handleAccessAccount({email, password}: SingInSchema){
+    singIn(email, password)
     reset()
   }
 
