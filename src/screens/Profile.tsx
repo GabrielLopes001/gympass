@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
 import ContentLoader, { Circle } from "react-content-loader/native";
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from "react-native";
 
@@ -11,9 +13,7 @@ import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 import { UserPhoto } from "@components/UserPhoto";
 import { ScreenHeader } from "@components/ScreenHeader";
-import { Controller, useForm } from "react-hook-form";
 import { ProfileSchema, profileSchema } from "@utils/profileSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 
 const Box = createBox<ThemeProps>();

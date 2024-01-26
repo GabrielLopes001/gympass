@@ -1,13 +1,14 @@
+import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import { createBox, createText, useTheme } from "@shopify/restyle"
 import { Image, ScrollView, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { Feather } from "@expo/vector-icons";
 
 import { ThemeProps } from "src/theme"
 
 import BodySvg from "@assets/body.svg"
 import SeriesSvg from "@assets/series.svg"
 import RepetitionsSvg from "@assets/repetitions.svg"
+
 import { Button } from "@components/Button";
 
 const Box = createBox<ThemeProps>();
