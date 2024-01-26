@@ -2,12 +2,15 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useNavigation } from "@react-navigation/native";
 import { useForm, Controller } from "react-hook-form";
 import { createBox, createText } from "@shopify/restyle";
-import { Image, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 
 import { ThemeProps } from "src/theme";
 
 import LogoSvg from "@assets/logo.svg";
 import BackGroundImg from "@assets/background.png";
+
+import { api } from "@services/api";
+import { AppError } from "@utils/appError";
 
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
@@ -23,9 +26,15 @@ export function SignUp(){
     resolver: zodResolver(singUpSchema)
   });
 
-  function handleSingUp(data: SingUpSchema){
-    console.log(data)
-    reset();
+  async function handleSingUp({name,email,password}: SingUpSchema){
+    try {
+      const response = await api.post('/users', {name,email,password})
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const title = isAppError ? error.message : 'Não foi possível criar a conta.'
+      Alert.alert('Error', title)
+    }
+    //reset();
   }
 
   function handleGoBack(){

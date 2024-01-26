@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const singInSchema = z.object({
    email: z.string( {required_error: 'O E-mail é Obrigatório'} )
-     .email( {message: 'E-mail inválido' }),
+     .email( {message: 'E-mail inválido' }).toLowerCase(),
    password: z.string( {required_error: 'Informe uma senha'} )
  }).required()
  
