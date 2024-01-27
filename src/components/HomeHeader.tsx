@@ -2,14 +2,20 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import { createBox, createText, useTheme } from "@shopify/restyle";
 
+import { useAuth } from "@hooks/useAuth";
+
 import { ThemeProps } from "src/theme";
+
 import { UserPhoto } from "./UserPhoto";
+import defaultUserPhoto from "@assets/userPhotoDefault.png"
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 export function HomeHeader() {
   const { colors } = useTheme<ThemeProps>();
+  const { user, singUp } = useAuth();
+
   return (
     <Box
       flexDirection="row"
@@ -20,17 +26,17 @@ export function HomeHeader() {
       alignItems="center"
     >
       <UserPhoto
-        source={{ uri: "https://github.com/GabrielLopes001.png" }}
+        source={user.avatar ? { uri: user.avatar} : defaultUserPhoto}
         alt="User Profile"
         size={58}
         style={{ marginRight: 16 }}
       />
       <Box flex={1}>
         <Text variant="body">Olá,</Text>
-        <Text variant="heading">Gabriel</Text>
+        <Text variant="heading" textTransform="capitalize">{user.name}</Text>
       </Box>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={singUp}>
         <MaterialIcons name="logout" size={28} color={colors.gray_200} />
       </TouchableOpacity>
     </Box>
