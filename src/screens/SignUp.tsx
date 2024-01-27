@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useNavigation } from "@react-navigation/native";
 import { useForm, Controller } from "react-hook-form";
@@ -15,11 +16,14 @@ import { AppError } from "@utils/appError";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 import { SingUpSchema, singUpSchema } from "@utils/singUpSchema";
+import { useAuth } from "@hooks/useAuth";
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 export function SignUp(){
+  const [isLoading, setIsLoading ] = useState(false);
+  const { singIn } = useAuth();
   const navigation = useNavigation();
 
   const { control, handleSubmit, reset, formState: {errors} } = useForm<SingUpSchema>({
@@ -28,7 +32,9 @@ export function SignUp(){
 
   async function handleSingUp({name,email,password}: SingUpSchema){
     try {
-      const response = await api.post('/users', {name,email,password})
+      setIsLoading(true)
+      await api.post('/users', {name,email,password})
+      await singIn(email, password)
     } catch (error) {
       const isAppError = error instanceof AppError;
       const title = isAppError ? error.message : 'Não foi possível criar a conta.'
@@ -126,6 +132,7 @@ export function SignUp(){
               <Button
                 title="Criar sua conta"
                 variant="primary"
+                isLoading={isLoading}
                 onPress={handleSubmit(handleSingUp)}
               />
 
