@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigation } from "@react-navigation/native";
-import { Image, ScrollView } from "react-native";
 import { Controller, useForm } from "react-hook-form";
 import { createBox, createText } from "@shopify/restyle";
+import { Alert, Image, ScrollView } from "react-native";
 
 import { ThemeProps } from "src/theme";
 
@@ -12,13 +12,16 @@ import BackGroundImg from "@assets/background.png";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 import { useAuth } from "@hooks/useAuth";
+import { AppError } from "@utils/appError";
 import { AuthNavigationRoutesProps } from "@routes/auth.routes";
 import { SingInSchema, singInSchema } from "@utils/singInSchema";
+import { useState } from "react";
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 export function SignIn(){
+  const [isLoading, setIsLoading ] = useState(false);
   const navigation = useNavigation<AuthNavigationRoutesProps>();
   const { singIn } = useAuth();
 
@@ -30,10 +33,18 @@ export function SignIn(){
     navigation.navigate("signUp")
   }
 
-  function handleAccessAccount({email, password}: SingInSchema){
-    singIn(email, password)
-    reset()
-  }
+  async function handleAccessAccount({email, password}: SingInSchema){
+      try {
+        setIsLoading(true)
+        await singIn(email, password)
+        reset()
+      } catch (error) {
+        const isAppError = error instanceof AppError
+        const title = isAppError ? error.message : 'Não foi possível logar. Tente novamente mais tarde.'
+        setIsLoading(false)
+        Alert.alert('Erro', title)
+      }
+    }
 
   return(
     <Box flex={1} bg="gray_700" paddingHorizontal="10">
@@ -91,6 +102,7 @@ export function SignIn(){
             onPress={handleSubmit(handleAccessAccount)}
             title="Acessar"
             variant="primary"
+            isLoading={isLoading}
           />
 
           <Box justifyContent="center" alignItems="center" width={'100%'} mt="24">
@@ -102,6 +114,7 @@ export function SignIn(){
              title="Criar sua Conta"
              variant="secondary"
              marginTop="2"
+             isLoading={isLoading}
              onPress={handleNewAccount}
             />
           </Box>
