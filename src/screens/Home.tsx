@@ -26,8 +26,8 @@ export function Home(){
 
   const navigation = useNavigation<AppNavigationRoutesProps>();
 
-  function handleOpenCardExercise(){
-    navigation.navigate("exercise");
+  function handleOpenCardExercise(exerciseId: string){
+    navigation.navigate("exercise", { exerciseId });
   }
 
   async function fetchGroups() {
@@ -103,7 +103,7 @@ export function Home(){
             renderItem={({item}) => (
               <ExerciseCard
                 data={item}
-                onPress={handleOpenCardExercise}
+                onPress={()=> handleOpenCardExercise(item.id)}
               />
             )}
             showsVerticalScrollIndicator={false}
