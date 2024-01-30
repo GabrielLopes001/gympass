@@ -1,14 +1,20 @@
 import { createBox, createText, useTheme } from "@shopify/restyle";
 import { Image, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { Entypo } from "@expo/vector-icons"
+
 import { ThemeProps } from "src/theme";
 
-type Props = TouchableOpacityProps & {}
+import { api } from "@services/api";
+import { ExerciseDTO } from "@dtos/ExercisesDTO";
+
+type Props = TouchableOpacityProps & {
+   data: ExerciseDTO;
+}
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
-export function ExerciseCard({...rest}: Props){
+export function ExerciseCard({data,...rest}: Props){
    const { colors } = useTheme<ThemeProps>();
    return(
          <TouchableOpacity {...rest}>
@@ -16,7 +22,7 @@ export function ExerciseCard({...rest}: Props){
             <Box flexDirection="row" bg="gray_500" alignItems="center" p="2" pr="4" borderRadius={6} mb="3">
 
             <Image 
-               source={{uri: 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/12/costas-remada-curvada-.gif'}}
+               source={{uri: `${api.defaults.baseURL}/exercise/thumb/${data.thumb}`}}
                width={64}
                height={64}
                borderRadius={12}
@@ -25,10 +31,10 @@ export function ExerciseCard({...rest}: Props){
 
             <Box flex={1} ml="4">
                <Text variant="heading" marginTop="1">
-                  Remada Curvada
+                  {data.name}
                </Text>
                <Text variant="body" numberOfLines={3}>
-                  3x séries de 12x repetições
+                  {data.series} séries de {data.repetitions} repetições
                </Text>
             </Box>
 
