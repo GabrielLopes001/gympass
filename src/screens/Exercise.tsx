@@ -9,6 +9,7 @@ import { ThemeProps } from "src/theme"
 import { api } from "@services/api";
 import { AppError } from "@utils/appError";
 import { ExerciseDTO } from "@dtos/ExercisesDTO";
+import { AppNavigationRoutesProps } from "@routes/app.routes";
 
 import BodySvg from "@assets/body.svg"
 import SeriesSvg from "@assets/series.svg"
@@ -24,11 +25,12 @@ const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 export function Exercise(){
+  const [ sendingExercise, setSendingExercise ] = useState(false)
   const [ isLoading, setIsLoading ] = useState(true);
   const [ exercise, setExercise ] = useState<ExerciseDTO>({} as ExerciseDTO)
   const { colors } = useTheme<ThemeProps>();
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<AppNavigationRoutesProps>();
   const route = useRoute();
   const { exerciseId } = route.params as RouteParamsProps
 
@@ -47,6 +49,22 @@ export function Exercise(){
       Alert.alert('Erro', title)
     } finally {
       setIsLoading(false)
+    }
+  }
+  async function handleExerciseHistoryRegister(){
+    try {
+      setSendingExercise(true)
+      const response = await api.post('/history', {exercise_id: exerciseId})
+
+      Alert.alert('Parabéns', 'Exercício marcado como realizado com sucesso.')
+
+      navigation.navigate('history')
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const title = isAppError ? error.message : 'Não foi possível registrar o exercício.'
+      Alert.alert('Erro', title)
+    } finally {
+      setSendingExercise(false)
     }
   }
 
@@ -109,6 +127,8 @@ export function Exercise(){
 
                   <Button
                     title="Marcar como realizado"
+                    isLoading={sendingExercise}
+                    onPress={handleExerciseHistoryRegister}
                     variant="primary"
                   />
 
