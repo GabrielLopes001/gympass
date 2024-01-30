@@ -1,11 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 
-import { ActivityIndicator, ActivityIndicatorComponent, Alert, FlatList } from "react-native";
+import { ActivityIndicator, FlatList } from "react-native";
 import { createBox, createText } from "@shopify/restyle"
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
-import { api } from "@services/api";
-import { AppError } from "@utils/appError";
 import { ExerciseDTO } from "@dtos/ExercisesDTO";
 
 import { ThemeProps } from "src/theme"
@@ -15,14 +13,19 @@ import { HomeHeader } from "@components/HomeHeader";
 import { ExerciseCard } from "@components/ExerciseCard";
 import { AppNavigationRoutesProps } from "@routes/app.routes";
 
+import { useGroupData } from "@hooks/useGroupData";
+import { useExerciseByGroup } from "@hooks/useExerciseByGroup";
+
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 export function Home(){
   const [ isLoading, setIsLoading ] = useState(true);
-  const [ groups, setGroups ] = useState<string[]>([]);
   const [ exercises, setExercises ] = useState<ExerciseDTO[]>([]);
-  const [ groupSelected, setGroupSelected ] = useState('costas');
+  const [ groupSelected, setGroupSelected ] = useState('');
+
+  const { data } = useGroupData();
+  const { data: dataExerciseByGroup } = useExerciseByGroup(groupSelected);
 
   const navigation = useNavigation<AppNavigationRoutesProps>();
 
@@ -30,50 +33,17 @@ export function Home(){
     navigation.navigate("exercise", { exerciseId });
   }
 
-  async function fetchGroups() {
-    try {
-      const response = await api.get('/groups')
-      setGroups(response.data)
-    } catch (error) {
-      const isAppError = error instanceof AppError
-      const title = isAppError ? error.message : 'Não foi possível carregar os grupos musculares.'
-      Alert.alert('Errro', title)
-    }
-  }
-
-  async function fetchExercisesByGroup(){
-    try {
-      setIsLoading(true)
-      const response = await api.get(`/exercises/bygroup/${groupSelected}`)
-      setExercises(response.data)
-    } catch (error) {
-      const isAppError = error instanceof AppError
-      const title = isAppError ? error.message : 'Não foi possível carregar os grupos musculares.'
-      Alert.alert('Errro', title)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  useEffect(()=>{
-    fetchGroups()
-  },[])
-
-  useFocusEffect(useCallback(() =>{
-    fetchExercisesByGroup()
-  },[groupSelected]))
-
   return(
     <Box flex={1}>
       <HomeHeader />
 
       <FlatList
-        data={groups}
+        data={data}
         keyExtractor={item => item}
         renderItem={({item})=>(
           <Group 
           name={item}
-          isActive={groupSelected === item}
+          isActive={dataExerciseByGroup === item}
           onPress={() => setGroupSelected(item)}
         />
         )}
