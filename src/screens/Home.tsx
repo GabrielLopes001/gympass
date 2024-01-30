@@ -1,7 +1,10 @@
-import { useState } from "react";
-import { FlatList } from "react-native";
+import { useState, useEffect } from "react";
+
+import { Alert, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { createBox, createText } from "@shopify/restyle"
+
+import { api } from "@services/api";
 
 import { ThemeProps } from "src/theme"
 
@@ -9,12 +12,13 @@ import { Group } from "@components/Group";
 import { HomeHeader } from "@components/HomeHeader";
 import { ExerciseCard } from "@components/ExerciseCard";
 import { AppNavigationRoutesProps } from "@routes/app.routes";
+import { AppError } from "@utils/appError";
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
 
 export function Home(){
-  const [ groups, setGroups ] = useState(['Costas', 'Bíceps', 'Peito','ombro']);
+  const [ groups, setGroups ] = useState<string[]>([]);
   const [ groupSelected, setGroupSelected ] = useState('costas');
   const [ exercises, setExercises ] = useState(['Puxada Lateral','Peito','Remada unilateral']);
 
@@ -23,6 +27,21 @@ export function Home(){
   function handleOpenCardExercise(){
     navigation.navigate("exercise");
   }
+
+  async function fetchGroups() {
+    try {
+      const response = await api.get('/groups')
+      setGroups(response.data)
+    } catch (error) {
+      const isAppError = error instanceof AppError
+      const title = isAppError ? error.message : 'Não foi possível carregar os grupos musculares.'
+      Alert.alert('Errro', title)
+    }
+  }
+
+  useEffect(()=>{
+    fetchGroups()
+  },[])
 
   return(
     <Box flex={1}>
