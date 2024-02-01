@@ -54,7 +54,8 @@ export function Exercise(){
   async function handleExerciseHistoryRegister(){
     try {
       setSendingExercise(true)
-      const response = await api.post('/history', {exercise_id: exerciseId})
+      
+      await api.post('/history', {exercise_id: exerciseId})
 
       Alert.alert('Parabéns', 'Exercício marcado como realizado com sucesso.')
 

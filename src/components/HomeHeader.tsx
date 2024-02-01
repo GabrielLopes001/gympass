@@ -2,12 +2,14 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import { createBox, createText, useTheme } from "@shopify/restyle";
 
+import { api } from "@services/api";
 import { useAuth } from "@hooks/useAuth";
 
 import { ThemeProps } from "src/theme";
 
-import { UserPhoto } from "./UserPhoto";
 import defaultUserPhoto from "@assets/userPhotoDefault.png"
+
+import { UserPhoto } from "./UserPhoto";
 
 const Box = createBox<ThemeProps>();
 const Text = createText<ThemeProps>();
@@ -26,7 +28,7 @@ export function HomeHeader() {
       alignItems="center"
     >
       <UserPhoto
-        source={user.avatar ? { uri: user.avatar} : defaultUserPhoto}
+        source={user.avatar ? { uri: `${api.defaults.baseURL}/avatar/${user.avatar}`} : defaultUserPhoto}
         alt="User Profile"
         size={58}
         style={{ marginRight: 16 }}

@@ -1,14 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
-
-import { ActivityIndicator, ActivityIndicatorComponent, Alert, FlatList } from "react-native";
-import { createBox, createText } from "@shopify/restyle"
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { ActivityIndicator, Alert, FlatList } from "react-native";
+
 
 import { api } from "@services/api";
 import { AppError } from "@utils/appError";
 import { ExerciseDTO } from "@dtos/ExercisesDTO";
 
 import { ThemeProps } from "src/theme"
+import { createBox, createText } from "@shopify/restyle"
 
 import { Group } from "@components/Group";
 import { HomeHeader } from "@components/HomeHeader";
