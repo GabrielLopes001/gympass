@@ -6,7 +6,7 @@ Um aplicativo moderno para o controle de exercícios físicos, com uma interface
 
 ## Screenshots
 
-![App Screenshot](src\assets\Capa.png)
+![App Screenshot](.github\assets\Capa.png)
 
 
 ## 🛠 Stack utilizada
